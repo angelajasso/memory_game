@@ -40,34 +40,56 @@ h1 {
   cursor: pointer;
 }
 
-.card.flip {
+.card.flipped {
   transform: rotateY(180deg);
 }
 
-.card-face {
+.card .front,
+.card .back {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 10px;
+  inset: 0;
+  border-radius: 12px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 40px;
+  justify-content: center;
+  backface-visibility: hidden;
 }
 
-.card-back {
-  background: #2c3e50;
-  color: white;
-  font-size: 50px;
+/* Cara trasera */
+.card .back {
+  background: #334155;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
-.card-front {
-  background: white;
+/* Cara frontal */
+.card .front {
+  background: #e2e8f0;
   transform: rotateY(180deg);
-  border: 2px solid #333;
 }
 
-.card-front img {
-  width: 70%;
+.card .front img {
+  width: 60%;
+  height: auto;
+  pointer-events: none;
+}
+
+.card.matched {
+  cursor: default;
+  opacity: 0.6;
+}
+
+#reset-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: var(--space-md);
+}
+
+#reset-btn:hover {
+  background: #0ea5e9;
 }

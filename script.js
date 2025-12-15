@@ -1,86 +1,116 @@
-// 1. Rutas de las imágenes
-const cardsData = [
+// 1. Referencias al DOM
+const board = document.querySelector(".board");
+const resetBtn = document.querySelector("#reset-btn");
+
+// 2. Estado del juego
+let firstCard = null;
+let secondCard = null;
+let lockBoard = false;
+
+// 3. Valores de las cartas
+const cardValues = [
   "assets/nota1.png",
   "assets/nota1.png",
   "assets/nota2.png",
   "assets/nota2.png",
 ];
 
-// 2. Mezclar el array
-cardsData.sort(() => Math.random() - 0.5);
+// 4. Barajar cartas
+cardValues.sort(() => 0.5 - Math.random());
 
-const board = document.getElementById("board");
-let firstCard = null;
-let secondCard = null;
-let lockBoard = false;
+// 5. Crear cartas
+function createCards() {
+  cardValues.forEach((value) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.dataset.value = value;
 
-// 3. Crear cartas dinámicamente
-cardsData.forEach((imgPath) => {
-  const card = document.createElement("div");
-  card.classList.add("card");
+    const front = document.createElement("div");
+    front.classList.add("front");
 
-  // Cara trasera
-  const back = document.createElement("div");
-  back.classList.add("card-face", "card-back");
-  back.textContent = "?";
+    const img = document.createElement("img");
+    img.src = value;
+    img.alt = "card image";
+    front.appendChild(img);
 
-  // Cara frontal (con imagen)
-  const front = document.createElement("div");
-  front.classList.add("card-face", "card-front");
-  front.innerHTML = `<img src="${imgPath}" alt="imagen-memoria">`;
+    const back = document.createElement("div");
+    back.classList.add("back");
+    back.textContent = "?";
 
-  card.append(back, front);
-  board.appendChild(card);
+    card.append(front, back);
+    board.appendChild(card);
 
-  card.addEventListener("click", () => flipCard(card, imgPath));
-});
+    card.addEventListener("click", () => flipCard(card));
+  });
+}
 
-// 4. Acción al voltear cartas
-function flipCard(card, imgPath) {
+// 6.Voltear la carta
+function flipCard(card) {
   if (lockBoard) return;
   if (card === firstCard) return;
 
-  card.classList.add("flip");
+  card.classList.add("flipped");
 
   if (!firstCard) {
-    firstCard = { card, imgPath };
+    firstCard = card;
     return;
   }
 
-  secondCard = { card, imgPath };
+  secondCard = card;
+  checkForMatch();
+}
+
+// 7.Comparar cartas
+function checkForMatch() {
+  const isMatch = firstCard.dataset.value === secondCard.dataset.value;
+
+  isMatch ? disableCards() : unflipCards();
+}
+
+// 8.Match
+function disableCards() {
+  firstCard.removeEventListener("click", flipCard);
+  secondCard.removeEventListener("click", flipCard);
+  resetBoard();
+}
+
+// 9.No match
+function unflipCards() {
   lockBoard = true;
 
-  checkMatch();
-}
-
-// 5. Verificar si hay coincidencia
-function checkMatch() {
-  if (firstCard.imgPath === secondCard.imgPath) {
-    disableCards();
-  } else {
-    unflipCards();
-  }
-}
-
-// 6. Si coinciden
-function disableCards() {
-  firstCard.card.style.pointerEvents = "none";
-  secondCard.card.style.pointerEvents = "none";
-  resetTurn();
-}
-
-// 7. Si NO coinciden
-function unflipCards() {
   setTimeout(() => {
-    firstCard.card.classList.remove("flip");
-    secondCard.card.classList.remove("flip");
-    resetTurn();
-  }, 900);
+    firstCard.classList.remove("flipped");
+    secondCard.classList.remove("flipped");
+    resetBoard();
+  }, 1000);
 }
 
-// 8. Reset de variables
-function resetTurn() {
+// 10. Reset de turno
+function resetBoard() {
   firstCard = null;
   secondCard = null;
   lockBoard = false;
 }
+
+// 11. Reiniciar juego
+function resetGame() {
+  // Resetear estado
+  firstCard = null;
+  secondCard = null;
+  lockBoard = false;
+
+  // Limpiar tablero
+  board.innerHTML = "";
+
+  // Barajar de nuevo
+  cardValues.sort(() => 0.5 - Math.random());
+
+  // Crear cartas otra vez
+  createCards();
+}
+
+// 12.Eventos iniciales
+resetBtn.addEventListener("click", resetGame);
+
+// Crear juego al cargar
+createCards();
