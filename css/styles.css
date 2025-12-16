@@ -76,7 +76,20 @@ h1 {
 
 .card.matched {
   cursor: default;
-  opacity: 0.6;
+  pointer-events: none;
+}
+
+.card.matched .front {
+  background: #dcfce7; /* verde suave */
+}
+
+.card.matched::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  box-shadow: 0 0 0 3px #22c55e inset, 0 0 12px rgba(34, 197, 94, 0.6);
+  pointer-events: none;
 }
 
 #reset-btn {

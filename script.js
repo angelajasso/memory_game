@@ -48,6 +48,7 @@ function createCards() {
 function flipCard(card) {
   if (lockBoard) return;
   if (card === firstCard) return;
+  if (card.classList.contains("matched")) return; // 👈 clave
 
   card.classList.add("flipped");
 
@@ -69,9 +70,23 @@ function checkForMatch() {
 
 // 8.Match
 function disableCards() {
-  firstCard.removeEventListener("click", flipCard);
-  secondCard.removeEventListener("click", flipCard);
+  firstCard.classList.add("matched");
+  secondCard.classList.add("matched");
+
+  checkWin(); // 👈 aquí se revisa victoria
   resetBoard();
+}
+
+function checkWin() {
+  const matchedCards = document.querySelectorAll(".card.matched");
+  const totalCards = board.children.length;
+
+  if (matchedCards.length === totalCards) {
+    setTimeout(() => {
+      alert("¡Ganaste! 🎉");
+      resetGame();
+    }, 800);
+  }
 }
 
 // 9.No match
