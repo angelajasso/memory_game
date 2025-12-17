@@ -19,21 +19,20 @@ body {
 }
 
 h1 {
-  font-size: var(--font-size-xlg);
+  font-size: var(--font-size-xxlg);
   margin-bottom: var(--space-md);
 }
 
-/* ====== TABLERO ====== */
 .board {
   display: grid;
-  grid-template-columns: repeat(2, 120px);
-  gap: 15px;
+  grid-template-columns: repeat(4, 8rem);
+  gap: var(--space-sm);
   justify-content: center;
 }
 
 .card {
-  width: 120px;
-  height: 120px;
+  width: 8rem;
+  height: 8rem;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.5s;
@@ -48,28 +47,26 @@ h1 {
 .card .back {
   position: absolute;
   inset: 0;
-  border-radius: 12px;
+  border-radius: var(--space-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   backface-visibility: hidden;
 }
 
-/* Cara trasera */
 .card .back {
-  background: #334155;
-  font-size: 2.5rem;
+  background: var(--brand);
+  font-size: var(--font-size-xxlg);
   font-weight: bold;
 }
 
-/* Cara frontal */
 .card .front {
-  background: #e2e8f0;
+  background: var(--surface);
   transform: rotateY(180deg);
 }
 
 .card .front img {
-  width: 60%;
+  width: 70%;
   height: auto;
   pointer-events: none;
 }
@@ -80,7 +77,7 @@ h1 {
 }
 
 .card.matched .front {
-  background: #dcfce7; /* verde suave */
+  background: var(--brand-hover);
 }
 
 .card.matched::after {
@@ -88,7 +85,7 @@ h1 {
   position: absolute;
   inset: 0;
   border-radius: 12px;
-  box-shadow: 0 0 0 3px #22c55e inset, 0 0 12px rgba(34, 197, 94, 0.6);
+  box-shadow: 0 0 0 3px var(--brand-hover) inset, 0 0 12px var(--brand-hover);
   pointer-events: none;
 }
 
@@ -96,13 +93,14 @@ h1 {
   padding: 0.6rem 1.2rem;
   border: none;
   border-radius: 8px;
-  background: #38bdf8;
-  color: #0f172a;
+  background: var(--surface);
+  color: var(--text);
   font-weight: bold;
   cursor: pointer;
   margin-bottom: var(--space-md);
 }
 
 #reset-btn:hover {
-  background: #0ea5e9;
+  background: var(--brand-hover);
+  color: var(--text-muted);
 }

@@ -13,6 +13,14 @@ const cardValues = [
   "assets/nota1.png",
   "assets/nota2.png",
   "assets/nota2.png",
+  "assets/nota3.png",
+  "assets/nota3.png",
+  "assets/nota4.png",
+  "assets/nota4.png",
+  "assets/nota5.png",
+  "assets/nota5.png",
+  "assets/nota6.png",
+  "assets/nota6.png",
 ];
 
 // 4. Barajar cartas
