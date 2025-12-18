@@ -3,13 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/Logo.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Memory Game</title>
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <h1>Juego de Memoria</h1>
-    <button id="reset-btn">Reiniciar Juego</button>
-    <div class="board"></div>
+    <header>
+      <section class="logotipo">
+        <img src="./assets/Logo.svg" alt="logo" />
+        <p>Angela Jasso</p>
+      </section>
+      <section class="social-toggle">
+        <a href="https://github.com/angelajasso/">
+          <img src="./assets/github.svg" alt="GitHub" />
+        </a>
+        <a href="https://www.linkedin.com/in/angelajasso/">
+          <img src="./assets/linkedin.svg" alt="LinkedIn" />
+        </a>
+        <button class="toggle" id="toggle-theme">🌙</button>
+      </section>
+    </header>
+    <main>
+      <h1>Juego de Memoria</h1>
+      <button id="reset-btn">Reiniciar Juego</button>
+      <div class="board"></div>
+    </main>
+    <footer>
+      <div class="group">
+        <p>Software Developer</p>
+        <p>© <span id="year"></span> Angela Jasso.</p>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/angelajasso/">GitHub</a>
+        <a href="https://www.linkedin.com/in/angelajasso/">LinkedIn</a>
+      </div>
+    </footer>
     <script src="./script.js"></script>
   </body>
 </html>

@@ -18,6 +18,51 @@ body {
   text-align: center;
 }
 
+/* header */
+header {
+  width: 100%;
+  padding: var(--space-sm) var(--space-lg);
+  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  color: var(--text-muted);
+  background: var(--gradient);
+}
+
+.logotipo {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-lg);
+  justify-self: start;
+}
+
+.logotipo p {
+  padding: var(--space-xs);
+}
+
+.social-toggle {
+  display: none;
+}
+
+.social-toggle img {
+  border: 2px solid var(--brand-hover);
+  margin: 0 var(--space-xs);
+  padding: 0.2rem;
+  border-radius: 10px;
+  background-color: var(--brand-hover);
+}
+
+.toggle {
+  margin-left: var(--space-sm);
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--brand);
+  background-color: var(--brand-hover);
+  border-radius: 50%;
+  padding: 0.4rem;
+  font-size: var(--font-size-base);
+}
+
 h1 {
   font-size: var(--font-size-xxlg);
   margin-bottom: var(--space-md);
@@ -103,4 +148,45 @@ h1 {
 #reset-btn:hover {
   background: var(--brand-hover);
   color: var(--text-muted);
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 1.5rem;
+  padding: 3rem 2rem;
+  border-top: 2px solid var(--text);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.socials a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.about {
+  margin: 2.5rem;
+}
+
+.about h2 {
+  margin: 1rem 0;
+  font-size: max(1.2em, 1.2em + 1cqi);
+}
+
+.about p {
+  margin: 2rem 4rem;
+  font-size: max(1em, 1em + 1cqi);
 }
