@@ -1,6 +1,37 @@
 // 1. Referencias al DOM
 const board = document.querySelector(".board");
 const resetBtn = document.querySelector("#reset-btn");
+const btn = document.getElementById("toggle-theme");
+const body = document.body;
+
+// ---Modo Dark/light
+// --- Cargar preferencia guardada o usar la del sistema ---
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+  body.classList.add("dark");
+  btn.textContent = "☀️";
+} else {
+  body.classList.remove("dark");
+  btn.textContent = "🌙";
+}
+
+// --- Función para alternar modo y guardar preferencia ---
+function toggleTheme() {
+  const isDark = body.classList.toggle("dark");
+  const icon = isDark ? "☀️" : "🌙";
+
+  btn.textContent = icon;
+
+  // Guardar modo actual
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+
+// --- Asignar eventos a ambos botones ---
+btn.addEventListener("click", toggleTheme);
+
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("show");
+}
 
 // 2. Estado del juego
 let firstCard = null;
@@ -137,3 +168,9 @@ resetBtn.addEventListener("click", resetGame);
 
 // Crear juego al cargar
 createCards();
+
+// --- Actualizar el año automáticamente ---
+const yearSpan = document.getElementById("year");
+if (yearSpan) {
+  yearSpan.textContent = new Date().getFullYear();
+}

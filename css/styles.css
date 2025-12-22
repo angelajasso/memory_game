@@ -16,6 +16,8 @@ body {
   background-color: var(--bg);
   padding: var(--space-sm);
   text-align: center;
+  padding: 0;
+  color: var(--text);
 }
 
 /* header */
@@ -40,8 +42,16 @@ header {
   padding: var(--space-xs);
 }
 
+a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
 .social-toggle {
-  display: none;
+  display: flex;
+  align-self: center;
+  justify-content: end;
 }
 
 .social-toggle img {
@@ -53,7 +63,7 @@ header {
 }
 
 .toggle {
-  margin-left: var(--space-sm);
+  /* margin-left: var(--space-sm); */
   cursor: pointer;
   background: none;
   border: 1px solid var(--brand);
@@ -63,16 +73,36 @@ header {
   font-size: var(--font-size-base);
 }
 
+/*main*/
+main {
+  margin: var(--space-lg);
+  container-type: inline-size;
+  container-name: board;
+}
+
 h1 {
   font-size: var(--font-size-xxlg);
   margin-bottom: var(--space-md);
+  color: var(--text);
 }
 
 .board {
   display: grid;
-  grid-template-columns: repeat(4, 8rem);
+  grid-template-columns: repeat(2, 8rem);
   gap: var(--space-sm);
   justify-content: center;
+}
+
+@container board (min-width: 600px) {
+  .board {
+    grid-template-columns: repeat(3, 8rem);
+  }
+}
+
+@container board (min-width: 800px) {
+  .board {
+    grid-template-columns: repeat(4, 8rem);
+  }
 }
 
 .card {
@@ -152,11 +182,12 @@ h1 {
 
 footer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   text-align: center;
   gap: 1.5rem;
-  padding: 3rem 2rem;
+  padding: 2rem;
   border-top: 2px solid var(--text);
+  justify-content: space-around;
 }
 
 .group {
